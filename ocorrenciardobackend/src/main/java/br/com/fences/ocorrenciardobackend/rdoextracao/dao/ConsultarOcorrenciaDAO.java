@@ -1779,7 +1779,8 @@ public class ConsultarOcorrenciaDAO {
 		sql.append("	d.RUBRICA, ");
 		sql.append("	e.ID_DESDOBRAMENTO, ");
 		sql.append("	g.DESCR_DESDOBRAMENTO, ");
-		sql.append("	e.ID_MODALIDADE ");
+		sql.append("	e.ID_MODALIDADE, ");
+		sql.append("	h.RUBRICA DESCR_MODALIDADE ");
 		sql.append("FROM   ");
 		sql.append("	db2aplicativos.TB_PESSOA_NATUREZA e  "); 
 		sql.append("	LEFT OUTER JOIN db2aplicativos.TB_DESDOBRAMENTO g ON  ");
