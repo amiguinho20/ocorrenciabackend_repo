@@ -46,7 +46,7 @@ public class ListarOcorrenciaDAO{
 			StringBuilder sql = new StringBuilder();
 			sql.append("");
 			
-			sql.append("select a.id_delegacia, a.ano_bo, a.num_bo, a.datahora_registro_bo ");
+			sql.append("select a.id_delegacia, a.ano_bo, a.num_bo, a.datahora_registro_bo, a.ano_referencia_bo");
 			sql.append("from  ");
 			sql.append("    db2aplicativos.tb_bo a  ");
 			sql.append("where   ");
@@ -68,6 +68,16 @@ public class ListarOcorrenciaDAO{
 				
 				Timestamp dataHora = rset.getTimestamp(4);
 				ocorrenciaChave.setDatahoraRegistroBo(dfDataHora.format(dataHora));
+				
+				String anoReferenciaBo = rset.getString(5);
+				if (anoReferenciaBo != null && !anoReferenciaBo.trim().isEmpty())
+				{
+					ocorrenciaChave.setComplementar("S");
+				}
+				else
+				{
+					ocorrenciaChave.setComplementar("N");	
+				}
 				
 				ocorrenciasChaves.add(ocorrenciaChave);
 			}
@@ -95,7 +105,7 @@ public class ListarOcorrenciaDAO{
 			StringBuilder sql = new StringBuilder();
 			sql.append("");
 			
-			sql.append("select a.id_delegacia, a.ano_bo, a.num_bo, a.datahora_registro_bo  ");
+			sql.append("select a.id_delegacia, a.ano_bo, a.num_bo, a.datahora_registro_bo, a.ano_referencia_bo  ");
 			sql.append("from  ");
 			sql.append("    db2aplicativos.tb_bo a  ");
 			sql.append("where   ");
@@ -141,6 +151,17 @@ public class ListarOcorrenciaDAO{
 				Timestamp dataHora = rset.getTimestamp(4);
 				ocorrenciaChave.setDatahoraRegistroBo(dfDataHora.format(dataHora));
 				
+				String anoReferenciaBo = rset.getString(5);
+				if (anoReferenciaBo != null && !anoReferenciaBo.trim().isEmpty())
+				{
+					ocorrenciaChave.setComplementar("S");
+				}
+				else
+				{
+					ocorrenciaChave.setComplementar("N");	
+				}
+				
+				
 				ocorrenciasChaves.add(ocorrenciaChave);
 				
 				if (recuperarComplementares)
@@ -177,7 +198,7 @@ public class ListarOcorrenciaDAO{
 			StringBuilder sql = new StringBuilder();
 			sql.append("");
 			
-			sql.append("select a.id_delegacia, a.ano_bo, a.num_bo ");
+			sql.append("select a.id_delegacia, a.ano_bo, a.num_bo, a.datahora_registro_bo, a.ano_referencia_bo   ");
 			sql.append("from  ");
 			sql.append("    db2aplicativos.tb_bo a  ");
 			sql.append("where   ");
@@ -196,6 +217,20 @@ public class ListarOcorrenciaDAO{
 				ocorrenciaChave.setIdDelegacia(rset.getString(1));
 				ocorrenciaChave.setAnoBo(rset.getString(2));
 				ocorrenciaChave.setNumBo(rset.getString(3));
+				
+				Timestamp dataHora = rset.getTimestamp(4);
+				ocorrenciaChave.setDatahoraRegistroBo(dfDataHora.format(dataHora));
+				
+				String anoReferenciaBo = rset.getString(5);
+				if (anoReferenciaBo != null && !anoReferenciaBo.trim().isEmpty())
+				{
+					ocorrenciaChave.setComplementar("S");
+				}
+				else
+				{
+					ocorrenciaChave.setComplementar("N");	
+				}
+				
 				
 				ocorrenciasChaves.add(ocorrenciaChave);
 				
