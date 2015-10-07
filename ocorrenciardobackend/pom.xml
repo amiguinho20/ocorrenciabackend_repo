@@ -86,7 +86,9 @@
 				</configuration>
 		    </plugin>
 		</plugins>
+		<!-- 
 		<finalName>ocorrenciardobackend</finalName> 
+		 -->
 	</build>
 	
 	<!-- <build> <finalName>ocorrenciabackend</finalName> <plugins> <plugin> 
