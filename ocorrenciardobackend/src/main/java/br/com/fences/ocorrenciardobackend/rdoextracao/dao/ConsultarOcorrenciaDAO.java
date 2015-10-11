@@ -173,7 +173,10 @@ public class ConsultarOcorrenciaDAO {
 	 * DESCR_PROVIDENCIA
 	 * DESCR_EXAME
 	 * DESCR_SOLUCAO
-	 * 
+	 * ID_SECCIONAL
+	 * NOME_SECCIONAL
+	 * ID_DEPARTAMENTO
+	 * NOME_DEPARTAMENTO
 	 * 
 	 * @param idDelegacia
 	 * @param ano
@@ -211,7 +214,11 @@ public class ConsultarOcorrenciaDAO {
 				sql.append("	i.DESCR_EXAME, ");
 				sql.append("	j.DESCR_SOLUCAO,  ");
 				sql.append("	bref.NOME_DELEGACIA NOME_DELEGACIA_REFERENCIA_BO,  ");
-				sql.append("	borigem.NOME_DELEGACIA NOME_DELEGACIA_ORIGEM_BO ");
+				sql.append("	borigem.NOME_DELEGACIA NOME_DELEGACIA_ORIGEM_BO, ");
+				sql.append("	m.ID_SECCIONAL, ");
+				sql.append("	m.NOME_SECCIONAL, ");
+				sql.append("	n.ID_DEPARTAMENTO, ");
+				sql.append("	n.NOME_DEPARTAMENTO ");
 				sql.append("FROM  ");
 				sql.append("	db2aplicativos.TB_BO a  ");
 				sql.append("	LEFT OUTER JOIN db2aplicativos.TB_DELEGACIA bref ON a.DELEG_REFERENCIA_BO = bref.ID_DELEGACIA  ");
@@ -225,13 +232,17 @@ public class ConsultarOcorrenciaDAO {
 				sql.append("	db2aplicativos.TB_DELEGACIA b, ");
 				sql.append("	db2aplicativos.TB_TIPO_BO c,  ");
 				sql.append("	db2aplicativos.TB_CIRCUNSCRICAO d,  ");
-				sql.append("	db2aplicativos.TB_TIPOLOCAL f  ");
+				sql.append("	db2aplicativos.TB_TIPOLOCAL f,  ");
+				sql.append("	db2aplicativos.TB_SECCIONAL m,  ");
+				sql.append("	db2aplicativos.TB_DEPARTAMENTO n  ");
 				sql.append("WHERE ");
 				sql.append("	a.ID_DELEGACIA = b.ID_DELEGACIA  ");
 				sql.append("AND a.ID_TIPO_BO = c.ID_TIPO_BO  ");
 				sql.append("AND a.ID_CIRCUNSCRICAO = d.ID_CIRCUNSCRICAO ");
 				sql.append("AND a.ID_TIPOLOCAL = g.ID_TIPOLOCAL  ");
 				sql.append("AND g.ID_TIPOLOCAL = f.ID_TIPOLOCAL ");
+				sql.append("and	m.ID_SECCIONAL = b.ID_SECCIONAL ");
+				sql.append("and	n.ID_DEPARTAMENTO = m.ID_DEPARTAMENTO ");
 				sql.append("and	a.ID_DELEGACIA = ? ");
 				sql.append("and a.ANO_BO = ? ");
 				sql.append("and a.NUM_BO = ? ");

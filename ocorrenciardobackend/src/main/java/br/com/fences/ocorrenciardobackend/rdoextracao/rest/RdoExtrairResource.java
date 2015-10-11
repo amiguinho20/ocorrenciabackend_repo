@@ -1,14 +1,19 @@
 package br.com.fences.ocorrenciardobackend.rdoextracao.rest;
 
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -17,9 +22,16 @@ import javax.ws.rs.core.MediaType;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import br.com.fences.fencesutils.conversor.InputStreamParaJson;
+import br.com.fences.fencesutils.conversor.converter.ColecaoJsonAdapter;
+import br.com.fences.fencesutils.verificador.Verificador;
 import br.com.fences.ocorrenciaentidade.chave.OcorrenciaChave;
 import br.com.fences.ocorrenciardobackend.converter.Converter;
 import br.com.fences.ocorrenciardobackend.rdoextracao.negocio.ConsultarOcorrencia;
+import br.com.fences.ocorrenciardobackend.rdoextracao.negocio.ExecutarSql;
 import br.com.fences.ocorrenciardobackend.rdoextracao.negocio.ListarOcorrencia;
 import br.com.fences.ocorrenciardobackend.tratamentoerro.exception.RestRuntimeException;
 
@@ -39,7 +51,15 @@ public class RdoExtrairResource {
 	@Inject
 	private Converter<OcorrenciaChave> converter;
 	
+	@Inject
+	private ExecutarSql executarSql;
+	
 	DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+	
+	private Gson gson = new GsonBuilder()
+			.registerTypeHierarchyAdapter(Collection.class, new ColecaoJsonAdapter())
+			.create();
+
 	
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -82,6 +102,31 @@ public class RdoExtrairResource {
    		String ocorrencia = consultarOcorrencia.consultarOcorrencia(idDelegacia, anoBo, numBo);
     	return ocorrencia;
     }
+    
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("executarSql") 
+    public String executarSql(InputStream ipFiltros) 
+    {
+    	String sql = InputStreamParaJson.converter(ipFiltros);
+    	String resultado = null;
+    	if (Verificador.isValorado(sql))
+    	{
+	    	//String sql = gson.fromJson(json, String.class);
+	
+	    	List<List<String>> registros = executarSql.efetuarConsulta(sql);
+	 
+	    	resultado = gson.toJson(registros);
+    	}
+    	else
+    	{
+    		resultado = "A query esta vazia.";
+    	}
+    	
+    	return resultado;
+    }
+    
     
     private void validarChave(String idDelegacia, String anoBo, String numBo) {
     	try

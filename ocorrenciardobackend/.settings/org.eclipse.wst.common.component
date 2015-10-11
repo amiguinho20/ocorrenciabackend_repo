@@ -7,6 +7,9 @@
         <dependent-module archiveName="ocorrenciaentidade-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ocorrenciaentidade/ocorrenciaentidade">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="fencesutils-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fencesutils/fencesutils">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/ocorrenciardobackend/target/classes"/>
         <property name="context-root" value="ocorrenciardobackend"/>
     </wb-module>

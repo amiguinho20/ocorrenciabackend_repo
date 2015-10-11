@@ -4,6 +4,7 @@
 /Users/Amiguinho/git/ocorrenciardobackend_repo/ocorrenciardobackend/src/main/java/br/com/fences/ocorrenciardobackend/config/RESTConfig.java
 /Users/Amiguinho/git/ocorrenciardobackend_repo/ocorrenciardobackend/src/main/java/br/com/fences/ocorrenciardobackend/tratamentoerro/exception/RestException.java
 /Users/Amiguinho/git/ocorrenciardobackend_repo/ocorrenciardobackend/src/main/java/br/com/fences/ocorrenciardobackend/converter/Converter.java
+/Users/Amiguinho/git/ocorrenciardobackend_repo/ocorrenciardobackend/src/main/java/br/com/fences/ocorrenciardobackend/rdoextracao/dao/ExecutarSqlDAO.java
 /Users/Amiguinho/git/ocorrenciardobackend_repo/ocorrenciardobackend/src/main/java/br/com/fences/ocorrenciardobackend/rdoextracao/negocio/ConsultarOcorrencia.java
 /Users/Amiguinho/git/ocorrenciardobackend_repo/ocorrenciardobackend/src/main/java/br/com/fences/ocorrenciardobackend/config/listener/ConfiguracaoDaAplicacaoContextListener.java
 /Users/Amiguinho/git/ocorrenciardobackend_repo/ocorrenciardobackend/src/main/java/br/com/fences/ocorrenciardobackend/config/AppConfig.java
@@ -13,6 +14,7 @@
 /Users/Amiguinho/git/ocorrenciardobackend_repo/ocorrenciardobackend/src/main/java/br/com/fences/ocorrenciardobackend/config/Log.java
 /Users/Amiguinho/git/ocorrenciardobackend_repo/ocorrenciardobackend/src/main/java/br/com/fences/ocorrenciardobackend/rdoextracao/dao/ListarOcorrenciaDAO.java
 /Users/Amiguinho/git/ocorrenciardobackend_repo/ocorrenciardobackend/src/main/java/br/com/fences/ocorrenciardobackend/tratamentoerro/entity/Erro.java
+/Users/Amiguinho/git/ocorrenciardobackend_repo/ocorrenciardobackend/src/main/java/br/com/fences/ocorrenciardobackend/rdoextracao/negocio/ExecutarSql.java
 /Users/Amiguinho/git/ocorrenciardobackend_repo/ocorrenciardobackend/src/main/java/br/com/fences/ocorrenciardobackend/tratamentoerro/bind/ExceptionMapperImpl.java
 /Users/Amiguinho/git/ocorrenciardobackend_repo/ocorrenciardobackend/src/main/java/br/com/fences/ocorrenciardobackend/config/LogInterceptor.java
 /Users/Amiguinho/git/ocorrenciardobackend_repo/ocorrenciardobackend/src/main/java/br/com/fences/ocorrenciardobackend/tratamentoerro/exception/RestRuntimeException.java
