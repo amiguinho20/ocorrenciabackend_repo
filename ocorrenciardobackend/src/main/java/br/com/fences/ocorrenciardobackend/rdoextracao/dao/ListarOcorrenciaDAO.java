@@ -46,7 +46,7 @@ public class ListarOcorrenciaDAO{
 			StringBuilder sql = new StringBuilder();
 			sql.append("");
 			
-			sql.append("select a.id_delegacia, a.ano_bo, a.num_bo, a.datahora_registro_bo, a.ano_referencia_bo");
+			sql.append("select a.id_delegacia, a.ano_bo, a.num_bo, a.datahora_registro_bo, a.ano_referencia_bo  ");
 			sql.append("from  ");
 			sql.append("    db2aplicativos.tb_bo a  ");
 			sql.append("where   ");
