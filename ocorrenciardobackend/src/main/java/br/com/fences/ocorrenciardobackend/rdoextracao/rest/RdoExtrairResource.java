@@ -31,8 +31,10 @@ import br.com.fences.fencesutils.verificador.Verificador;
 import br.com.fences.ocorrenciaentidade.chave.OcorrenciaChave;
 import br.com.fences.ocorrenciardobackend.converter.Converter;
 import br.com.fences.ocorrenciardobackend.rdoextracao.negocio.ConsultarOcorrencia;
+import br.com.fences.ocorrenciardobackend.rdoextracao.negocio.DelegaciaBO;
 import br.com.fences.ocorrenciardobackend.rdoextracao.negocio.ExecutarSql;
 import br.com.fences.ocorrenciardobackend.rdoextracao.negocio.ListarOcorrencia;
+import br.com.fences.ocorrenciardobackend.rdoextracao.negocio.UsuarioBO;
 import br.com.fences.ocorrenciardobackend.tratamentoerro.exception.RestRuntimeException;
 
 
@@ -53,6 +55,12 @@ public class RdoExtrairResource {
 	
 	@Inject
 	private ExecutarSql executarSql;
+	
+	@Inject
+	private UsuarioBO usuarioBO;
+	
+	@Inject
+	private DelegaciaBO delegaciaBO;
 	
 	DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 	
@@ -127,6 +135,47 @@ public class RdoExtrairResource {
     	return resultado;
     }
     
+    //---- usuario ------------------------------------------------------------------
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("consultarUsuario/{rgUsuario}")
+    public String consultarUsuario(@PathParam("rgUsuario") String rgUsuario) 
+    {
+    	String usuario = usuarioBO.consultar(rgUsuario);
+    	return usuario;
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("listarUsuarios")
+    public String listarUsuarios() 
+    {
+    	String usuarios = usuarioBO.listar();
+    	return usuarios;
+    }
+    
+    //---- delegacia ----------------------------------------------------------------
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("consultarDelegacia/{idDelegacia}")
+    public String consultarDelegacia(@PathParam("idDelegacia") String idDelegacia) 
+    {
+    	String delegacia = delegaciaBO.consultar(idDelegacia);
+    	return delegacia;
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("listarDelegacias")
+    public String listarDelegacias() 
+    {
+    	String delegacias = delegaciaBO.listar();
+    	return delegacias;
+    }
+    
+    //---- validacoes internas ------------------------------------------------------
     
     private void validarChave(String idDelegacia, String anoBo, String numBo) {
     	try
